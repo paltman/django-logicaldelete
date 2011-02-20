@@ -25,9 +25,9 @@ class LogicalDeletedManager(models.Manager):
             )
     
     def get(self, *args, **kwargs):
-        return self.everything().get(*args, **kwargs)
+        return self.all_with_deleted().get(*args, **kwargs)
     
     def filter(self, *args, **kwargs):
         if "pk" in kwargs:
-            return self.everything().filter(*args, **kwargs)
+            return self.all_with_deleted().filter(*args, **kwargs)
         return self.get_query_set().filter(*args, **kwargs)
