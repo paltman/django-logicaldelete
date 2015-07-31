@@ -27,14 +27,24 @@ class LogicalDeleteModel(models.Model):
         ]
 
         for objs_model in related_objs:
-            # Retrieve all related objects
-            objs = getattr(self, objs_model).all()
 
-            for obj in objs:
-                # Checking if inherits from logicaldelete
-                if not issubclass(obj.__class__, LogicalDeleteModel):
-                    break
-                obj.delete()
+            if hasattr(self, objs_model):
+                local_objs_model = getattr(self, objs_model)
+                if hasattr(local_objs_model, 'all'):
+                    # Retrieve all related objects
+                    objs = local_objs_model.all()
+
+                    for obj in objs:
+                        # Checking if inherits from logicaldelete
+                        if not issubclass(obj.__class__, LogicalDeleteModel):
+                            break
+                        obj.delete()
+                else:
+                    obj = local_objs_model
+
+                    if not issubclass(obj.__class__, LogicalDeleteModel):
+                        break
+                    obj.delete()
 
         # Soft delete the object
         self.date_removed = timezone.now()
