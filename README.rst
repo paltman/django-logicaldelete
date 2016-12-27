@@ -81,9 +81,7 @@ Using the app is pretty simple:
 Additional
 ----------
 
-Logical deletes are handled by date stamping a `date_removed` column.  In
-addition, a ``date_created`` and ``date_modified`` columns will be populated as a
-convenience.
+Logical deletes are handled by date stamping a `date_removed` column.
 
 
 Backwards Incompatible Changes

@@ -10,8 +10,6 @@ class LogicalDeleteModel(models.Model):
     This base model provides date fields and functionality to enable logical
     delete functionality in derived models.
     """
-    date_created = models.DateTimeField(default=timezone.now)
-    date_modified = models.DateTimeField(default=timezone.now)
     date_removed = models.DateTimeField(null=True, blank=True)
 
     objects = managers.LogicalDeletedManager()
