@@ -1,9 +1,13 @@
 try:
     from django.conf.urls import patterns
 except ImportError:
-    from django.conf.urls.defaults import patterns
+    patterns = None
 
 
-urlpatterns = patterns(
-    "",
-)
+urlpatterns = [
+]
+
+if patterns:
+    urlpatterns = patterns(
+        "",
+    )
