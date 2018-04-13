@@ -17,13 +17,16 @@ class LogicalDeletedManager(models.Manager):
 
     def all_with_deleted(self):
         if self.model:
+            if hasattr(self, 'core_filters'):
+                return super(LogicalDeletedManager, self).get_queryset().filter(**self.core_filters)
             return super(LogicalDeletedManager, self).get_queryset()
 
     def only_deleted(self):
         if self.model:
-            return super(LogicalDeletedManager, self).get_queryset().filter(
-                date_removed__isnull=False
-            )
+            filters = { 'date_removed__isnull': False }
+            if hasattr(self, 'core_filters'):
+                filters.update(**self.core_filters)
+            return super(LogicalDeletedManager, self).get_queryset().filter(filters)
 
     def get(self, *args, **kwargs):
         return self.all_with_deleted().get(*args, **kwargs)
