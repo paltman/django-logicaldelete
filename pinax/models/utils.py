@@ -2,9 +2,8 @@
 
 import itertools
 
-from django.db import DEFAULT_DB_ALIAS
-
 from django.contrib.admin.utils import NestedObjects
+from django.db import DEFAULT_DB_ALIAS
 
 
 def get_related_objects(obj, using=DEFAULT_DB_ALIAS):

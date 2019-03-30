@@ -1,9 +1,0 @@
-site_name: pinax-models
-pages:
-- [index.md, Home]
-- [changelog.md, Change Log]
-theme: readthedocs
-repo_url: https://github.com/pinax/pinax-models
-site_description: "Provide Support for Logical Deletes on Models and in the Django Admin"
-site_author: "Pinax Team"
-markdown_extensions: [admonition]
