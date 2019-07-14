@@ -9,7 +9,7 @@ class LogicalDeleteModelAdmin(admin.ModelAdmin):
     list_display = ("id", "__unicode__", "active")
     list_display_filter = ("active",)
 
-    def queryset(self, request):
+    def get_queryset(self, request):
         qs = self.model._default_manager.all_with_deleted()
         ordering = self.ordering or ()
         if ordering:
